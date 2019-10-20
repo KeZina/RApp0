@@ -1,0 +1,172 @@
+/* General */
+* {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+}
+#root {
+    background-color: rgb(148, 30, 30);
+    height: 100vh;
+}
+
+.MContainer {
+    position: relative;
+    text-align: center;
+    top: 4vh;
+    width: 55vw;
+    height: 96vh;
+    left: 15vw;
+}
+/* Sidebar */
+#sidebarContainer {
+    position: fixed;
+    right: 0;
+    width: 14vw;
+    height: 95vh;
+    top: 4vh;
+    background-color: rgb(144, 252, 122);
+    border-top: 1vh solid black;
+    border-left: 1vh solid black;
+    z-index: 2;
+}
+#sidebarButton {
+    background-color: rgb(251, 253, 108);
+    border: 2px solid black;
+    padding: 0.5vw;
+    margin-top: 6vh;
+    width: 60%;
+}
+#sidebarButton:hover {
+    background-color: rgb(113, 197, 253);
+}
+/* SidebarForm */
+#sidebarFormContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(0, 0, 0, 0.9);
+}
+#sidebarFormSubContainer {
+    position: relative;
+    top: 7vh;
+    left: 22vw;
+    width: 56vw;
+    height: 70vh;
+    background-color: rgb(204, 253, 255);
+    box-shadow: 0 0 2em 0.5em rgb(156, 248, 144) inset;
+}
+#sidebarFormButton {
+    position: absolute;
+    right: 0;
+    font-weight: 900;
+    font-size: 0.8em;
+    width: 3vw;
+    height: 3.9vh;
+    background-color: rgb(250, 115, 66);
+    border: none;
+}
+#sidebarFormButton:hover {
+    background-color: rgb(255, 67, 67);
+}
+#sidebarFormButton:focus {
+    outline: none;
+}
+.sidebarFormInput {
+    background-color: rgb(252, 255, 86);
+    padding: 1vh;
+    margin-top: 4vh;
+    width: 15vw;
+    height: 2vh;
+    border: 0;
+}
+.sidebarFormInputButton {
+    background-color: rgb(69, 223, 250);
+    height: 4vh;
+    border: 0;
+    border-left: none;
+}
+.sidebarFormInputButton:active {
+    background-color: rgb(255, 85, 85);
+
+}
+.sidebarFormInputButton:focus {
+    outline: none;
+}
+/* Nav */
+#navContainer {
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 4vh;
+    background-color: rgb(255, 255, 117);
+    border-bottom: 1vh solid black;
+    z-index: 2;
+}
+.navLink {
+    color: black;
+    font-size: 1.6em;
+    text-decoration: none;
+}
+/* Recipes */
+#recipesTitle {
+    position: relative;
+    top: 5vh;
+    height: 3vh;
+    color: black;
+    background-color: rgb(247, 173, 62);
+    padding: 0.3vw;
+    border: 10px double black;
+    border-radius: 10vw;
+}
+#recipesCurrently {
+    position: relative;
+    top: 5.5vh;
+    background-color: rgb(247, 173, 62);
+    height: 80vh;
+    padding: 0.3vw;
+    border: 4px solid black;
+    border-radius: 1vw;
+}
+#recipesCurrentlyTop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 4.5vh;
+    background-color: rgb(253, 116, 116);
+    border-bottom: 4px solid black;
+    border-top-left-radius: 0.7vw;
+    border-top-right-radius: 0.7vw;
+}
+#recipesCurrentlyBottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 4.5vh;
+    background-color: rgb(253, 116, 116);
+    border-top: 5px solid black;
+    border-bottom-left-radius: 0.7vw;
+    border-bottom-right-radius: 0.7vw;
+}
+#ingredientsDirection {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    top: 5vh;
+    height: 70vh;
+
+}
+#ingredients {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+}
+#direction {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+}
