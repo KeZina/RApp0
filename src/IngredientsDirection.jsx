@@ -16,6 +16,9 @@ class IngredientsDirection extends React.Component{
         }else if(eName === "direction"){
             this.props.removeDirection(eId);
         }
+        if(this.props.shouldUpdate !== this.props.state){
+            this.forceUpdate();
+        }
     }
 
     render(){
@@ -44,7 +47,7 @@ class IngredientsDirection extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        state
+        state: state[0]
     }
 }
 

@@ -8,37 +8,60 @@ import Main from './Main';
 import Recipes from './Recipes';
 import './index.css'
 
-const initialState = {
-    ingredients: [
-        {
-            ingredient: "potato",
-            id: Math.round(Math.random() * 1e16)
-        }
-    ],
-    direction: [
-        {
-            step: "cook",
-            id: Math.round(Math.random() * 1e16)
-        }
+const initialState = [
+    {
+        ingredients: [
+            {
+                ingredient: "potato",
+                id: Math.round(Math.random() * 1e16),
+            }
+        ],
+        direction: [
+            {
+                step: "cook",
+                id: Math.round(Math.random() * 1e16),
+            }
 
-    ],
-}
+        ],
+    }
+]
 
 const formReducer = (state = initialState, action) => {
     switch(action.type){
         case "ADD_INGREDIENTS":
-            return {...state, ingredients:[...state.ingredients, ...action.ingredients]};
+            let addIng = [...state];
+            addIng[0].ingredients = [...addIng[0].ingredients, ...action.ingredients];
+            return addIng;
         case "ADD_DIRECTION":
-            return {...state, direction:[...state.direction, ...action.direction]};
+            let addDir = [...state];
+            addDir[0].direction = [...addDir[0].direction, ...action.direction];
+            return addDir;
         case "REMOVE_INGREDIENTS":
-            return {...state, ingredients: state.ingredients.filter(item => item.id != action.id)}
+            let removeIng = [...state];
+            removeIng[0].ingredients = removeIng[0].ingredients.filter(item => item.id != action.id);
+            return removeIng;
         case "REMOVE_DIRECTION":
-            return {...state, direction: state.direction.filter(item => item.id != action.id)}
+            let removeDir = [...state];
+            removeDir[0].direction = removeDir[0].direction.filter(item => item.id != action.id);
+            return removeDir;
         default: return state;
     }
 }
 
 const store = createStore(formReducer);
+store.dispatch({type: "ADD_INGREDIENTS", ingredients: [
+    {
+        ingredient: "marmelato",
+        id: Math.round(Math.random() * 1e16),
+    }
+],})
+store.dispatch({type: "ADD_INGREDIENTS", ingredients: [
+    {
+        ingredient: "chocolato",
+        id: Math.round(Math.random() * 1e16),
+    }
+],})
+console.log(store.getState())
 
 ReactDOM.render(
     <Provider store = {store}>

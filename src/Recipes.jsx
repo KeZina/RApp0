@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import IngredientsDirection from './IngredientsDirection';
+import RecipesLists from './RecipesLists';
 
 class Recipes extends React.Component{
     constructor(props){
@@ -32,7 +32,9 @@ class Recipes extends React.Component{
                                 Ingredients:
                             </h2>
                             <ul>
-                                <IngredientsDirection ingredients />
+                                {/* <RecipesLists>
+
+                                </RecipesLists> */}
                             </ul>
                         </div>
                         <div id = "direction">
@@ -40,7 +42,9 @@ class Recipes extends React.Component{
                                 Direction:
                             </h2>
                             <ol>
-                                <IngredientsDirection direction />
+                                {/* <RecipesLists>
+                                    
+                                </RecipesLists> */}
                             </ol>
                         </div>
                     </div>

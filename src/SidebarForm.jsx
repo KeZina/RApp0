@@ -10,12 +10,13 @@ class SidebarForm extends React.Component{
             trigger: false,
         }
         this.handleAddItem = this.handleAddItem.bind(this);
+        this.shouldUpdate = {}
     }
 
     handleAddItem(e){
-        console.log(this.props.state)
         let eValue = e.target.children[0].value;
         let eName = e.target.children[0].name;
+        this.shouldUpdate = {...this.props.state}
         e.preventDefault();
         if(eValue === '' || eValue === ' '){
             eValue = null;
@@ -24,13 +25,13 @@ class SidebarForm extends React.Component{
         if(eName === "ingredients"){
             this.props.addIngredients(eValue);
             e.target.children[0].value = null;
-            return;
         }else if(eName === "direction"){
             this.props.addDirection(eValue);
             e.target.children[0].value = null;
-            return;
         }
-
+        if(this.shouldUpdate != this.props.state){
+            this.forceUpdate();
+        }
     }
 
     render(){
@@ -49,7 +50,7 @@ class SidebarForm extends React.Component{
                             </form>
                             <h2 style = {{margin: "1vh 0"}}>Ingredients:</h2>
                             <ul>
-                                <IngredientsDirection ingredients />
+                                <IngredientsDirection ingredients shouldUpdate = {this.shouldUpdate} />
                             </ul>
                         </div>
                         <div style = {{display: "flex", flexDirection: "column"}}>
@@ -59,7 +60,7 @@ class SidebarForm extends React.Component{
                             </form>
                             <h2 style = {{margin: "1vh 0"}}>Direction:</h2>
                             <ol>
-                                <IngredientsDirection direction />
+                                <IngredientsDirection direction shouldUpdate = {this.shouldUpdate} />
                             </ol>
                         </div>
                     </div>
@@ -71,7 +72,7 @@ class SidebarForm extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        state
+        state: state[0]
     }
 }
 
