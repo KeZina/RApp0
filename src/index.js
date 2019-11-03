@@ -6,10 +6,11 @@ import { Provider } from 'react-redux';
 import Nav from './Nav';
 import Main from './Main';
 import Recipes from './Recipes';
-import './index.css'
+import './index.css';
 
 const initialState = [
-    {
+    {   
+        name: "recipe's name",
         ingredients: [
             {
                 ingredient: "potato",
@@ -23,11 +24,16 @@ const initialState = [
             }
 
         ],
+        description: "simple description about recipe",
     }
 ]
 
 const formReducer = (state = initialState, action) => {
     switch(action.type){
+        case "ADD_NAME":
+            let addName = [...state];
+            addName[0].name = action.name;
+            return addName;
         case "ADD_INGREDIENTS":
             let addIng = [...state];
             addIng[0].ingredients = [...addIng[0].ingredients, ...action.ingredients];
@@ -36,6 +42,10 @@ const formReducer = (state = initialState, action) => {
             let addDir = [...state];
             addDir[0].direction = [...addDir[0].direction, ...action.direction];
             return addDir;
+        case "ADD_DESCRIPTION":
+            let addDes = [...state];
+            addDes[0].description = action.description;
+            return addDes;
         case "REMOVE_INGREDIENTS":
             let removeIng = [...state];
             removeIng[0].ingredients = removeIng[0].ingredients.filter(item => item.id != action.id);
@@ -44,6 +54,10 @@ const formReducer = (state = initialState, action) => {
             let removeDir = [...state];
             removeDir[0].direction = removeDir[0].direction.filter(item => item.id != action.id);
             return removeDir;
+        case "ADD_RECIPE":
+            let addRec = [...state, state[0]];
+            console.log(state, addRec);
+            return addRec;
         default: return state;
     }
 }
@@ -73,4 +87,5 @@ ReactDOM.render(
             </Switch>
         </HashRouter>
     </Provider>
-    , document.getElementById('root'))
+    , document.getElementById('root')
+)

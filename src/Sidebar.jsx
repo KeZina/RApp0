@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SidebarForm from './SidebarForm.jsx';
 
 class Sidebar extends React.Component{
@@ -14,17 +15,31 @@ class Sidebar extends React.Component{
         this.setState({
             trigger: !this.state.trigger
         })
-        console.log(this.state.trigger)
     }
 
     render(){
         return(
             <div id = "sidebarContainer">
+                {this.props.state.map((item, index) => {
+                    if(index === 0) {
+                        return;
+                    }
+                    return(
+                        <button key = {item.id} className = "sidebarButton">{item.name}</button>
+                    )
+                })}
+
                 {this.state.trigger && <SidebarForm handleClick = {this.handleClick} />}
-                <button id = "sidebarButton" onClick = {this.handleClick}>Add a New One</button>
+                <button className = "sidebarButton" onClick = {this.handleClick}>Add a New One</button>
             </div>
         )
     }
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+    return {
+        state
+    }
+}
+
+export default connect(mapStateToProps)(Sidebar);

@@ -1,42 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { REMOVE_INGREDIENTS, REMOVE_DIRECTION } from './actions.js';
 
 class IngredientsDirection extends React.Component{
-    constructor(props){
-        super(props);
-        this.handleRemoveItem = this.handleRemoveItem.bind(this);
-    }
-
-    handleRemoveItem(e){
-        let eId = e.target.id;
-        let eName = e.target.name;
-        if(eName === "ingredients"){
-            this.props.removeIngredient(eId);
-        }else if(eName === "direction"){
-            this.props.removeDirection(eId);
-        }
-        if(this.props.shouldUpdate !== this.props.state){
-            this.forceUpdate();
-        }
-    }
 
     render(){
         return(
             <>
                 {this.props.ingredients && this.props.state.ingredients.map(item => {
                     return(
-                        <li key = {item.id}>
-                            {item.ingredient}
-                            <input id = {item.id} name = "ingredients" type = "submit" value = "remove" onClick = {this.handleRemoveItem} />
+                        <li key = {item.id} className = "ingredientsDirectionLi">
+                            <p style = {{width: "80%", height: "95%", padding: "0.2vw"}}>{item.ingredient}</p>
+                            <input id = {item.id}
+                                className = "ingredientsDirectionInput"
+                                name = "ingredients"
+                                type = "submit"
+                                value = "X"
+                                onClick = {this.props.handleRemoveItem} />
                         </li>
                     )
                 })}
                 {this.props.direction && this.props.state.direction.map(item => {
                     return(
-                        <li key = {item.id}>
-                            {item.step}
-                            <input id = {item.id} name = "direction" type = "submit" value = "remove" onClick = {this.handleRemoveItem} />
+                        <li key = {item.id} className = "ingredientsDirectionLi">
+                            <p style = {{width: "85%", height: "95%", padding: "0.2vw"}}>{item.step}</p>
+                            <input id = {item.id}
+                                className = "ingredientsDirectionInput"
+                                name = "direction"
+                                type = "submit"
+                                value = "X"
+                                onClick = {this.props.handleRemoveItem} />
                         </li>
                     )   
                 })}
@@ -45,17 +36,4 @@ class IngredientsDirection extends React.Component{
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        state: state[0]
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return{
-        removeIngredient: (id) => dispatch(REMOVE_INGREDIENTS(id)),
-        removeDirection: (id) => dispatch(REMOVE_DIRECTION(id)),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(IngredientsDirection);
+export default IngredientsDirection;

@@ -15,11 +15,6 @@ class Recipes extends React.Component{
         return(
             <div className = "MContainer recipesContainer">
                 <Sidebar />
-                <div id = "recipesTitle">
-                    <h2>
-                        Recipes
-                    </h2>
-                </div>
                 <div id = "recipesCurrently">
                     <div id = "recipesCurrentlyTop">
                         <h1>

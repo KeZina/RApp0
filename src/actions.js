@@ -1,3 +1,9 @@
+export const ADD_NAME = (name) => {
+    return {
+        type: "ADD_NAME",
+        name
+    }
+}
 export const ADD_INGREDIENTS = (ingredient) => {
     return {
         type: "ADD_INGREDIENTS",
@@ -20,6 +26,12 @@ export const ADD_DIRECTION = (step) => {
         ],
     }
 }
+export const ADD_DESCRIPTION = (description) => {
+    return {
+        type: "ADD_DESCRIPTION",
+        description
+    }
+}
 export const REMOVE_INGREDIENTS = (id) => {
     return {
         type: "REMOVE_INGREDIENTS",
@@ -30,5 +42,10 @@ export const REMOVE_DIRECTION = (id) => {
     return {
         type: "REMOVE_DIRECTION",
         id
+    }
+}
+export const ADD_RECIPE = () => {
+    return {
+        type: "ADD_RECIPE",
     }
 }
