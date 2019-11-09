@@ -5,33 +5,46 @@ class IngredientsDirection extends React.Component{
     render(){
         return(
             <>
-                {this.props.ingredients && this.props.state.ingredients.map(item => {
-                    return(
-                        <li key = {item.id} className = "ingredientsDirectionLi">
-                            <p style = {{width: "80%", height: "95%", padding: "0.2vw"}}>{item.ingredient}</p>
-                            <input id = {item.id}
-                                className = "ingredientsDirectionInput"
-                                name = "ingredients"
-                                type = "submit"
-                                value = "X"
-                                onClick = {this.props.handleRemoveItem} />
-                        </li>
-                    )
-                })}
-                {this.props.direction && this.props.state.direction.map(item => {
-                    return(
-                        <li key = {item.id} className = "ingredientsDirectionLi">
-                            <p style = {{width: "85%", height: "95%", padding: "0.2vw"}}>{item.step}</p>
-                            <input id = {item.id}
-                                className = "ingredientsDirectionInput"
-                                name = "direction"
-                                type = "submit"
-                                value = "X"
-                                onClick = {this.props.handleRemoveItem} />
-                        </li>
-                    )   
-                })}
-            </>
+            {this.props.ingredients && this.props.state.map(item => {
+                return(
+                    <li key = {item.id} className = "ingredientsDirectionLi">
+                        <p className = "ingredientsDirectionP">{item.ingredient}</p>
+                        <input id = {item.id}
+                            className = "ingredientsDirectionInput"
+                            name = "ingredients"
+                            type = "submit"
+                            value = "X"
+                            onClick = {this.props.handleRemoveItem} />
+                    </li>
+                )
+            })}
+            {this.props.direction && this.props.state.map(item => {
+                return(
+                    <li key = {item.id} className = "ingredientsDirectionLi">
+                        <p className = "ingredientsDirectionP">{item.step}</p>
+                        <input id = {item.id}
+                            className = "ingredientsDirectionInput"
+                            name = "direction"
+                            type = "submit"
+                            value = "X"
+                            onClick = {this.props.handleRemoveItem} />
+                    </li>
+                )   
+            })}
+            {this.props.description &&
+                    <p className = "ingredientsDirectionLi">
+                        <p className = "ingredientsDirectionP">{this.props.state}</p>
+                        {/* <input
+                            className = "ingredientsDirectionInput"
+                            name = "description"
+                            type = "submit"
+                            value = "X"
+                            onClick = {this.props.handleRemoveItem}
+                        /> */}
+                    </p>
+                    
+            }
+        </>
         )
     }
 }

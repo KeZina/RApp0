@@ -1,45 +1,73 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import SidebarButtons from './SidebarButtons.jsx';
 import SidebarForm from './SidebarForm.jsx';
 
 class Sidebar extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            trigger: false,
+            formTrigger: false,
+            recipe: null,
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.handleFormTrigger = this.handleFormTrigger.bind(this);
+        this.handleLoadRecipe = this.handleLoadRecipe.bind(this);
+        this.handleChangeRecipe = this.handleChangeRecipe.bind(this);
+        this.handleRemoveRecipe = this.handleRemoveRecipe.bind(this);
     }
 
-    handleClick(){
-        this.setState({
-            trigger: !this.state.trigger
+
+
+    handleFormTrigger(){
+        this.setState({ 
+            formTrigger: !this.state.formTrigger
+        })
+        setTimeout(() => {
+            if(!this.state.formTrigger){
+                this.setState({
+                    recipe: null,
+                })
+            }
         })
     }
 
+    handleLoadRecipe(e){
+        this.props.handleRefreshRecipe("load", null, JSON.parse(localStorage.getItem(e.target.name)))
+    }
+
+    handleChangeRecipe(e){
+        let parsedStorage = JSON.parse(localStorage.getItem(e.target.name));
+        this.setState({
+            recipe: parsedStorage,
+        })
+        this.props.handleRefreshRecipe("change")
+        this.handleFormTrigger();
+    }
+
+    handleRemoveRecipe(e){
+        localStorage.removeItem(e.target.name)
+        this.props.handleRefreshRecipe("remove", e.target.name)
+    }
+
+
+
     render(){
         return(
-            <div id = "sidebarContainer">
-                {this.props.state.map((item, index) => {
-                    if(index === 0) {
-                        return;
-                    }
-                    return(
-                        <button key = {item.id} className = "sidebarButton">{item.name}</button>
-                    )
-                })}
+            <>
+                <SidebarButtons
+                    handleFormTrigger = {this.handleFormTrigger}
+                    handleLoadRecipe = {this.handleLoadRecipe}
+                    handleChangeRecipe = {this.handleChangeRecipe}
+                    handleRemoveRecipe = {this.handleRemoveRecipe}
+                />
 
-                {this.state.trigger && <SidebarForm handleClick = {this.handleClick} />}
-                <button className = "sidebarButton" onClick = {this.handleClick}>Add a New One</button>
-            </div>
+                {(this.state.formTrigger &&
+                <SidebarForm
+                    handleFormTrigger = {this.handleFormTrigger}
+                    recipe = {this.state.recipe}
+                />)}
+            </>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        state
-    }
-}
-
-export default connect(mapStateToProps)(Sidebar);
+export default Sidebar;

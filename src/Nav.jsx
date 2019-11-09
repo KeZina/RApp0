@@ -9,7 +9,7 @@ class Nav extends React.Component{
                     Main
                 </Link>
 
-                <Link className = "navLink" to = '/recipes'>
+                <Link className = "navLink" to = '/Recipe'>
                     Recipes
                 </Link>
             </div>

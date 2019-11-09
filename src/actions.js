@@ -29,7 +29,7 @@ export const ADD_DIRECTION = (step) => {
 export const ADD_DESCRIPTION = (description) => {
     return {
         type: "ADD_DESCRIPTION",
-        description
+        description,
     }
 }
 export const REMOVE_INGREDIENTS = (id) => {
@@ -44,8 +44,14 @@ export const REMOVE_DIRECTION = (id) => {
         id
     }
 }
-export const ADD_RECIPE = () => {
+export const ADD_RECIPE = (recipe) => {
     return {
         type: "ADD_RECIPE",
+        recipe
+    }
+}
+export const CLEAR_RECIPE = () => {
+    return {
+        type: "CLEAR_RECIPE",
     }
 }
